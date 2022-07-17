@@ -1,34 +1,133 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# MOBILE EXCHANGE
 
-First, run the development server:
+useing this site users can find value of their old mobile.and admin can add the mobile company name and their respective model name and prices. 
 
-```bash
-npm run dev
-# or
-yarn dev
+#### Frontend Live link(user area)-> https://exchangemobile.netlify.app
+#### Frontend Live link(admin area)-> https://exchangemobile.netlify.app/admin
+#### Backend Live link->https://exchange123.herokuapp.com/
+#### run on local->1.clone the backend and frontend code from github (link is in the below) 
+#### backend->1. npm install 2. node index.js
+#### frontened->1.npm install 2. node run dev
+
+#### Frontend code link-> https://github.com/bhaumikankan/Exchange-frontened.git
+#### Backend code link-> https://github.com/bhaumikankan/Exchange-backend.git
+
+#### assigned on -> 15/07/2022  Submitted on ->16/07/2022 
+
+
+# API Reference
+
+
+# User api's
+#### User Register and login
+
+```http
+  POST /user/auth/register
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```http
+  POST /user/auth/login
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+| Parameter | Type     | 
+| :-------- | :------- | 
+| `email` | `string`   |
+| `password`| `string`| 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+#### Verify user auttoken
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```http
+  GET /user/auth/verify
+```
 
-## Learn More
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `req.headers['x-auth-token']`      | `string` | **Required** |
 
-To learn more about Next.js, take a look at the following resources:
+#### get product depending on quary Parameter
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```http
+  GET /user/getproduct/models?cname=`mobile company name`& model=`model name`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  if company name and model name then we get prices
+  if only company name then we get models belong to this company
+  if nothing present then we get all models
 
-## Deploy on Vercel
+  GET /user/getproduct/allcomp 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  to get all company names
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `req.headers['x-user-token']`      | `string` | **Required** |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Admin api's
+
+```http
+  POST /admin/auth/login
+```
+
+| Parameter | Type     | 
+| :-------- | :------- | 
+| `email` | `string`   |
+| `password`| `string`| 
+
+#### Verify user auttoken
+
+```http
+  GET /admin/auth/verify
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `req.headers['x-auth-token']`      | `string` | **Required** |
+
+
+#### get all users 
+
+```http
+  GET /admin/getuser/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `req.headers['x-admin-token']`      | `string` | **Required** |
+
+#### Add new mobile company
+
+```http
+  Post /admin/product/addcompany
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `req.headers['x-admin-token']`      | `string` | **Required** |
+| `comapny name` | `string`   | **Required** |
+
+#### Add new mobile model
+
+```http
+  Post /admin/product/addmodel/:id of company
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `req.headers['x-admin-token']`      | `string` | **Required** |
+| `model name` | `string`   | **Required** |
+| `id of company` | `string`   | **Required** |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
