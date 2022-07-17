@@ -6,7 +6,7 @@ function Userdetails() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios
+    getCookie("admin-token")&&axios
       .get("https://exchange123.herokuapp.com/admin/getuser/", {
         headers: {
           "Content-Type": "application/json",

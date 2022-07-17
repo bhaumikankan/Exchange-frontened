@@ -15,7 +15,7 @@ function Product() {
   const [allmodels, setAllmodels] = useState([]);
 
   useEffect(() => {
-    axios
+    getCookie("admin-token")&&axios
       .get("https://exchange123.herokuapp.com/admin/product/allcomp", {
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +32,7 @@ function Product() {
   }, [allcomp]);
 
   useEffect(() => {
-    axios
+    getCookie("admin-token")&&axios
       .get("https://exchange123.herokuapp.com/admin/product/models", {
         headers: {
           "Content-Type": "application/json",
@@ -310,16 +310,16 @@ function Product() {
                     {v.company}
                   </td>
                   <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {v.fixedp?v.rates[0]:"no fixed price"}
+                    {v.fixedp?v.rates[0]:"NA"}
                   </td>
                   <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {v.rates[0]}
+                    {v.fixedp?"NA":v.rates[0]}
                   </td>
                   <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {v.rates[1]}
+                    {v.fixedp?"NA":v.rates[1]}
                   </td>
                   <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {v.rates[2]}
+                    {v.fixedp?"NA":v.rates[2]}
                   </td>
                 </tr>
               );
